@@ -1,7 +1,9 @@
 package com.example.junittest.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.junittest.models.database.User;
@@ -13,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @WebMvcTest(UserController.class)
 @RunWith(SpringRunner.class)
@@ -24,7 +28,7 @@ public class UserControllerTest {
   private MockMvc mockMvc;
   @MockBean
   private UserService userService;
-  ObjectMapper om = new ObjectMapper();
+  ObjectMapper objectMapper = new ObjectMapper();
   @Test
   public void adduserTest() throws Exception {
     User user = User
@@ -32,14 +36,19 @@ public class UserControllerTest {
         .name("kirti")
         .age(30)
         .build();
+    String jsonUser = objectMapper.writeValueAsString(user);
 
-    String jsonUser = om.writeValueAsString(user);
+    when(userService.addUser(user)).thenReturn(
+        ResponseEntity.ok().body(user)
+    );
+
 
     this.mockMvc.perform(
             post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonUser)
         )
-        .andExpect(status().isOk());
+        .andExpect(status().isOk())
+        .andExpect(content().string(jsonUser));
   }
 }
