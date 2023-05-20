@@ -15,7 +15,8 @@ public class UserService {
   RestTemplate restTemplate = new RestTemplate();
 
   public ResponseEntity<Object> addUser(User user){
-    restTemplate.getForEntity("url",String.class);
+    // only for test
+    restTemplate.getForEntity("https://www.google.com/",String.class);
     return ResponseEntity.ok().body(userRepository.save(user));
   }
   public ResponseEntity<Object> findUserByName(String name){

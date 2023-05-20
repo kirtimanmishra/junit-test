@@ -1,5 +1,5 @@
 services:
-  mongodb-myapp:
+  mongodb-app:
     image: mongo
     ports:
       - "27017:27017"
