@@ -29,6 +29,7 @@ public class UserControllerTest {
   @MockBean
   private UserService userService;
   ObjectMapper objectMapper = new ObjectMapper();
+
   @Test
   public void adduserTest() throws Exception {
     User user = User
@@ -41,7 +42,6 @@ public class UserControllerTest {
     when(userService.addUser(user)).thenReturn(
         ResponseEntity.ok().body(user)
     );
-
 
     this.mockMvc.perform(
             post("/users")
