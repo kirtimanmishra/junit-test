@@ -43,6 +43,7 @@ public class UserServiceTest {
         .name("kirti")
         .age(30)
         .build();
+
     when(userRepository.save(user)).thenReturn(user);
     Mockito.when(restTemplate.getForEntity(
             Mockito.anyString(),
