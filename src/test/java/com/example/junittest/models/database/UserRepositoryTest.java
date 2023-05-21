@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
+/*
+ * for database layer test, create an in-memory database "h2".
+ * Configure in application.properties under test
+ */
 @DataMongoTest
 class UserRepositoryTest {
   @Autowired

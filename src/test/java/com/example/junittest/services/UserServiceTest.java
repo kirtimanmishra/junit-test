@@ -24,6 +24,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+/*
+ * For testing rest-template, I have used @RunWith(MockitoJUnitRunner.class)
+ * with @Mock and @InjectMocks.
+ * Without rest-template, I can also use @RunWith(SpringRunner.class)
+ * with @MockBean and @Autowired
+ */
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class UserServiceTest {
@@ -33,6 +39,7 @@ public class UserServiceTest {
   private RestTemplate restTemplate;
   @InjectMocks
   private UserService userService;
+
   ResponseEntity responseEntity = mock(ResponseEntity.class);
   ObjectMapper om = new ObjectMapper();
 

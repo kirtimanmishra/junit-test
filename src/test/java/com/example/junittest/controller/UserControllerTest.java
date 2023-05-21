@@ -24,6 +24,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+/*
+ * for controller layer test, I have used @WebMvcTest
+ */
 @WebMvcTest(UserController.class)
 @RunWith(SpringRunner.class)
 public class UserControllerTest {
